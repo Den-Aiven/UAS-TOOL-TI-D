@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aiven's Biodata</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<script>
+    document.addEventListener('scroll', function() {
+        const sections = document.querySelectorAll('section');
+        const scrollPosition = window.scrollY;
+    
+        sections.forEach(section => {
+            const offset = section.offsetTop; 
+            const height = section.offsetHeight; 
+            const speed = 0.1; 
+    
+            if (scrollPosition >= offset - window.innerHeight && scrollPosition <= offset + height) {
+                const yPos = (scrollPosition - offset) * speed;
+                section.style.backgroundPosition = `center ${yPos}px`;
+            }
+        });
+    });
+   
+    
+const topbarLinks = document.querySelectorAll('.topbar nav ul li a');
+
+topbarLinks.forEach(link => {
+    link.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+
+
+        targetSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    });
+});
+
+
+   
+    const navLinks = document.querySelectorAll('header ul li a');
+
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault(); 
+            
+            
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+
+           
+            targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    });
+</script>
+
+<body>
+    <section id="home" class="parallax">
+        <header>
+            <a href="#"><img src="logo TI.png" alt="logo"></a>
+            
+        </header>
+        <div class="topbar">
+            <nav>
+                <ul>
+                    <li><a href="#home">Biodata</a></li>
+                    <li><a href="#Riwayat">Riwayat</a></li>
+                    <li><a href="#Hobby">Hobby</a></li>
+                    <li><a href="#Prestasi">Prestasi</a></li>
+                </ul>
+            </nav>
+        </div>
+    
+        
+        
+
+        <div class="content">
+            <div class="text-Box">
+                <h2>Tugas Tool TI <br>U Can Call Me <span>"Aiven"</span></h2>
+                <p>Haloo, Nama lengkap saya I Made Ivan Ari mahayana, 
+                    Nim saya 2405551015 <br>Saya sedang berkuliah di Universitas Udayana.
+                    Saya berada di Fakultas Teknik <br>lebih tepatnya Teknologi Informasi, saya sangat bangga untuk menjadi bagian dari kelas TI,<br> 
+                    Saya merupakan seorang maba tahun 2024 banyak hal yang sudah saya pelajari di sini<br> 
+                    terutama di bidang Teknologi, pemrograman, dan jaringan.</p>
+                <a href="kerjasama.html">Cooperation</a>    
+            </div>
+            <div class="img-Box">
+                <img id="" src="biodata.jpg" class="cavei"> 
+            </div>   
+        </div>
+    </section>
+
+   
+    <section id="Riwayat" class="parallax">
+        <div class="text-Box">
+            <h2>Riwayat <br>School History <span>Aiven</span></h2>
+            <p>Saya memiliki beberapa prestasi di bidang kesenian, 
+                saya pernah meraih <br>Juara 1 seprovinsi Bali. Saya meraih juara pada saat SD, SMP, SMA
+                <br>Pada saat di SMA saya pernah mengikuti ekstrakulikuler Teater dan pernah menjadi ketua Ekstra<br> 
+                Saya juga merupakan salah satu anggota siswa berprestasi di SMA saya<br> 
+                Dari semua pencapaian yang sudah saya raih saya merasa bangga dengan hal tersebut.</p>
+        </div>
+        <div class="img-Box">
+            <img id="gambar-menu" src="sec2.jpg" class="cavei"> 
+        </div> 
+    </section>
+
+    
+    <section id="Hobby" class="parallax">
+        <div class="text-Box">
+            <h2>Hobby <br>I Love Basketball <span>"Aiven"</span></h2>
+            <p>Saya memiliki hobi bermain musik terutama gitar, 
+                saya juga menyukai permainan basket<br>Saya senang menghabiskan waktu saya dengan bermain basket
+                di kamar saya<br>Saya juga sering bermain gitar dirumah hanya untuk menyenangkan diri<br> 
+                Saya pernah mengikuti ekstrakulikuler basket walaupun itu hanya berjalan 1 tahun pelajaran saja<br> 
+                Saya juga pernah menjadi gitaris di ekstra teater saya.</p>
+        </div>
+        <div class="img-Box">
+            <img id="gambar-hobby" src="sec3.jpg" class="cavei"> 
+        </div>   
+    </section>
+
+   
+    <section id="Prestasi" class="parallax">
+        <div class="text-Box">
+            <h2>Prestasi <br>I'am The Winner <span>"Aiven"</span></h2>
+            <p>Saya dengan bangga meraih prestasi sebagai juara dalam lomba Nyurat Bali tingkat provinsi, 
+                <br>sebuah kompetisi yang menguji keindahan dan keahlian dalam menulis aksara Bali secara tradisional.
+                <br>Kemenangan ini merupakan bukti dedikasi saya dalam melestarikan warisan budaya Bali,<br> 
+                sekaligus memperlihatkan kemampuan saya dalam menguasai seni dan keindahan aksara Bali di tingkat tertinggi.</p>
+        </div>
+        <div class="img-Box">
+            <img id="gambar-prestasi" src="prestasi.jpg" class="cavei"> 
+        </div>  
+    </section>
+</body>
+</html>

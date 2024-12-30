@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Pengelolaan Kerjasama</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #C1BAA1;
+            margin: 20px;
+        }
+
+        .card {
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #ffffff;
+            color: #000000;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-header button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .card-header button:hover {
+            background-color: #218838;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: white;
+            border-radius: 8px;
+        }
+
+        .table th {
+            background-color: #ffffff;
+            color: black;
+            text-align: center;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        .table td {
+            text-align: center;
+            padding: 10px;
+            vertical-align: middle;
+            color: black;
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        .table-striped tbody tr:nth-of-type(even) {
+            background-color: rgba(240, 240, 240, 0.7);
+        }
+
+        .table-striped tbody tr:hover {
+            background-color: rgba(200, 200, 200, 0.9);
+        }
+
+        .btn-sm {
+            padding: 5px 10px;
+        }
+
+        .pagination {
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .btn-brown {
+            background-color: #b48810;
+            color: white;
+            border: none;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn-brown:hover {
+            background-color: #b48810;
+            transform: scale(1.05);
+        }
+
+        .btn-brown:focus {
+            outline: none;
+            background-color: #b48810;
+            transform: scale(1.05);
+            box-shadow: 0 0 8px rgba(160, 82, 45, 0.7);
+        }
+    </style>
+</head>
+<body>
+
+    <video class="video-background" autoplay muted loop>
+        <source src="backround1vid.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header">
+                <h5>Sistem Pengelolaan Kerjasama</h5>
+                <button type="button" class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#tambahModal">+ Tambah</button>
+            </div>
+            <div class="card-body">
+
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nama Kerjasama</th>
+                            <th>Jenis Kerjasama</th>
+                            <th>Nilai Kerjasama</th>
+                            <th>Detail Kerjasama</th>
+                            <th>Dokumen</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productTableBody">
+
+                    </tbody>
+                </table>
+
+                <div class="text-center mt-4">
+                    <a href="index.html" class="btn btn-brown btn-sm">Kembali</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="tambahModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tambahModalLabel">Tambah/Update Kerjasama</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="productForm">
+                        <input type="hidden" id="id" name="id">
+                        <div class="mb-3">
+                            <label for="nama_kerjasama" class="form-label">Nama Kerjasama</label>
+                            <input type="text" id="nama_kerjasama" name="nama_kerjasama" class="form-control" placeholder="Nama Kerjasama" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="jenis_kerjasama" class="form-label">Jenis Kerjasama</label>
+                            <select id="jenis_kerjasama" name="jenis_kerjasama" class="form-select" required>
+                                <option value="">Pilih Jenis Kerjasama</option>
+                                <option value="Joint Venture">Joint Venture</option>
+                                <option value="Outsourcing">Outsourcing</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nilai_kerjasama" class="form-label">Nilai Kerjasama</label>
+                            <input type="number" id="nilai_kerjasama" name="nilai_kerjasama" class="form-control" placeholder="Nilai Kerjasama" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="detail_kerjasama" class="form-label">Detail Kerjasama</label>
+                            <input type="text" id="detail_kerjasama" name="detail_kerjasama" class="form-control" placeholder="Detail Kerjasama" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="dokumen_kerjasama" class="form-label">Dokumen Kerjasama</label>
+                            <input type="text" id="dokumen_kerjasama" name="dokumen_kerjasama" class="form-control" placeholder="Dokumen Kerjasama" required>
+                        </div>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const apiUrl = 'kerjasama.php';
+        const productTableBody = document.getElementById('productTableBody');
+        const productForm = document.getElementById('productForm');
+
+        document.addEventListener('DOMContentLoaded', fetchProducts);
+
+        function fetchProducts() {
+            fetch(`${apiUrl}?action=read`)
+                .then(response => response.json())
+                .then(data => renderTable(data))
+                .catch(error => console.error('Error fetching products:', error));
+        }
+
+        function renderTable(data) {
+            productTableBody.innerHTML = '';
+            data.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.id}</td>
+                    <td>${item.nama_kerjasama}</td>
+                    <td>${item.jenis_kerjasama}</td>
+                    <td>${item.nilai_kerjasama}</td>
+                    <td>${item.detail_kerjasama}</td>
+                    <td>${item.dokumen_kerjasama}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="editProduct(${item.id})">Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteProduct(${item.id})">Hapus</button>
+                    </td>
+                `;
+                productTableBody.appendChild(row);
+            });
+        }
+
+        productForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const formData = new FormData(productForm);
+            const id = formData.get('id');
+            const action = id ? 'update' : 'create';
+            fetch(`${apiUrl}?action=${action}`, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(message => {
+                alert(message);
+                fetchProducts();
+                resetForm();
+                const modal = bootstrap.Modal.getInstance(document.getElementById('tambahModal'));
+                modal.hide();
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        function editProduct(id) {
+            fetch(`${apiUrl}?action=read`)
+                .then(response => response.json())
+                .then(data => {
+                    const product = data.find(item => item.id == id);
+                    if (product) {
+                        document.getElementById('id').value = product.id;
+                        document.getElementById('nama_kerjasama').value = product.nama_kerjasama;
+                        document.getElementById('jenis_kerjasama').value = product.jenis_kerjasama;
+                        document.getElementById('nilai_kerjasama').value = product.nilai_kerjasama;
+                        document.getElementById('detail_kerjasama').value = product.detail_kerjasama;
+                        document.getElementById('dokumen_kerjasama').value = product.dokumen_kerjasama;
+                        const modal = new bootstrap.Modal(document.getElementById('tambahModal'));
+                        modal.show();
+                    }
+                })
+                .catch(error => console.error('Error fetching product:', error));
+        }
+
+        function deleteProduct(id) {
+            if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
+                fetch(`${apiUrl}?action=delete&id=${id}`)
+                    .then(response => response.text())
+                    .then(message => {
+                        alert(message);
+                        fetchProducts();
+                    })
+                    .catch(error => console.error('Error deleting product:', error));
+            }
+        }
+
+        function resetForm() {
+            productForm.reset();
+            document.getElementById('id').value = '';
+        }
+    </script>
+</body>
+</html>
